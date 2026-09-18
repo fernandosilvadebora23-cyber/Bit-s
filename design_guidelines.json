@@ -1,0 +1,183 @@
+{
+  "app_name": "Bit-s",
+  "personality": "1 iOS-Native Clean",
+  "personality_one_liner": "A modern, map-centric marketplace built on clear spatial context, effortless bottom-sheet navigation, and a reliable, energetic green brand identity.",
+  "color": {
+    "surface": "#FFFFFF",
+    "onSurface": "#111111",
+    "surfaceSecondary": "#F4F4F5",
+    "onSurfaceSecondary": "#111111",
+    "surfaceTertiary": "#E5E7EB",
+    "onSurfaceTertiary": "#111111",
+    "surfaceInverse": "#111111",
+    "onSurfaceInverse": "#FFFFFF",
+    "brand": "#0CAF60",
+    "brandPrimary": "#0CAF60",
+    "onBrandPrimary": "#FFFFFF",
+    "brandSecondary": "#E7F7EF",
+    "onBrandSecondary": "#0CAF60",
+    "brandTertiary": "#F2FCF7",
+    "onBrandTertiary": "#0CAF60",
+    "success": "#0CAF60",
+    "onSuccess": "#FFFFFF",
+    "warning": "#FACC15",
+    "onWarning": "#111111",
+    "error": "#F75555",
+    "onError": "#FFFFFF",
+    "info": "#3B82F6",
+    "onInfo": "#FFFFFF",
+    "border": "#E5E7EB",
+    "borderStrong": "#D1D5DB",
+    "divider": "#F3F4F6",
+    "muted": "#6B7280",
+    "onBrand": "#FFFFFF"
+  },
+  "typography": {
+    "displayFontFamily": "Space Grotesk",
+    "textFontFamily": "Geist",
+    "scale": {
+      "sm": 12,
+      "base": 14,
+      "lg": 16,
+      "xl": 20,
+      "2xl": 24
+    }
+  },
+  "spacing": {
+    "rule": "Use generous iOS-native rhythms. Content must never touch edges without margins. Safe area must be respected. Use 'md' (12px) for internal padding of small cards and 'lg' (16px) or 'xl' (24px) for screen margins.",
+    "xs": 4,
+    "sm": 8,
+    "md": 12,
+    "lg": 16,
+    "xl": 24,
+    "2xl": 32,
+    "3xl": 48
+  },
+  "radius_tokens": {
+    "sm": 6,
+    "md": 12,
+    "lg": 20,
+    "pill": 999
+  },
+  "shadow_tier": "1",
+  "navigation": "bottom_tabs",
+  "icon_set": "Ionicons",
+  "glassmorphism": {
+    "enabled": "true",
+    "do's": [
+      "Use glass on Bottom Sheet handles and floating map controls (Location, Back, Menu).",
+      "Use glass on floating action buttons (FAB) layered over the map."
+    ],
+    "dont's": [
+      "Do not use glass heavily on data-dense text fields or the actual service request form inputs.",
+      "Do not blur the entire map."
+    ]
+  },
+  "platform_libraries": {
+    "glass": {
+      "ios": "expo-glass-effect",
+      "android": "expo-blur",
+      "low_end_android_fallback": "solid surfaceSecondary"
+    },
+    "image": "expo-image",
+    "blur": "expo-blur",
+    "bottom_sheet": "@gorhom/bottom-sheet",
+    "animation": "react-native-reanimated",
+    "gesture": "react-native-gesture-handler",
+    "maps": "react-native-maps"
+  },
+  "screens": [
+    {
+      "name": "Customer Home",
+      "purpose": "Primary booking interface anchored around spatial awareness and instant service access.",
+      "states": {
+        "loading": "Map loads with a subtle skeleton bottom sheet.",
+        "empty": "No active orders, prompting to pick an address and service.",
+        "error": "Location unavailable; manual address entry required."
+      },
+      "layout": "Full-screen Map background taking 100% viewport. Floating controls (Hamburger menu, My Location) on a transparent overlay. A draggable `@gorhom/bottom-sheet` anchored at the bottom. Sheet contains: Address Input (Where to?) -> Quick action 'Chamar' -> Horizontal scroll of Service categories (Diarista, Eletricista, Encanador)."
+    },
+    {
+      "name": "Service Request Form",
+      "purpose": "Dynamic wizard for scoping out the specific service details before pricing.",
+      "states": {
+        "loading": "Dynamic fields loading skeleton.",
+        "empty": "N/A",
+        "error": "Validation errors highlighted with red borders and inline messages."
+      },
+      "layout": "Continuation inside the Bottom Sheet (expanded detent). Single column form. Uses specific questions per service (e.g., number of rooms for Diarista). Floating sticky primary CTA at the bottom to 'See Price' / 'Calculate'."
+    },
+    {
+      "name": "Live Order Tracking",
+      "purpose": "Real-time state machine display connecting Customer and Provider.",
+      "states": {
+        "loading": "Connecting to provider...",
+        "empty": "N/A",
+        "error": "Connection lost; showing optimistic state with retry."
+      },
+      "layout": "Full-screen Map showing provider approach. Medium-detent Bottom Sheet showing the state machine timeline (SEARCHING -> ASSIGNED -> EN ROUTE -> STARTED -> COMPLETED) with large clear typography, provider avatar, and a quick 'Contact'/'Call' action."
+    },
+    {
+      "name": "Provider Home (Incoming & Status)",
+      "purpose": "Command center for the provider to go online and accept requests at a glance.",
+      "states": {
+        "loading": "Loading today's stats...",
+        "empty": "Offline mode: Map greyed out with a large 'Go Online' CTA in the center.",
+        "error": "Network drop: 'Reconnecting...' banner."
+      },
+      "layout": "Map background. Top header with Online/Offline toggle and today's earnings. When a request comes in: A full-width overlay card (glance-safe) showing distance, estimated payout, and a massive 'Accept' swipe/button. Single-action workflow strictly."
+    },
+    {
+      "name": "Admin Dashboard",
+      "purpose": "Overview of platform health, verifications, and dynamic pricing metrics.",
+      "states": {
+        "loading": "Spinner centered on tables.",
+        "empty": "No pending verifications or alerts.",
+        "error": "Data fetch failed; Retry CTA."
+      },
+      "layout": "List-driven layout. Header with high-level stats. Grids of metric cards (Total Orders, Active Providers). List rows for pending Provider verifications and dispute resolutions. Native iOS list style with chevrons and section headers."
+    }
+  ],
+  "images": {
+    "hero_bg": {
+      "url": "https://images.unsplash.com/photo-1689443111287-5c2e129ec756?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTJ8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhYnN0cmFjdCUyMGdyZWVuJTIwZ2VvbWV0cmljJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3ODk3NjQ4MDd8MA&ixlib=rb-4.1.0&q=85",
+      "dark": "https://images.unsplash.com/photo-1689443111287-5c2e129ec756?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTJ8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhYnN0cmFjdCUyMGdyZWVuJTIwZ2VvbWV0cmljJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3ODk3NjQ4MDd8MA&ixlib=rb-4.1.0&q=85",
+      "alt": "Modern abstract green geometric background"
+    },
+    "empty_state": {
+      "url": "https://images.pexels.com/photos/7302889/pexels-photo-7302889.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "dark": "https://images.pexels.com/photos/7302889/pexels-photo-7302889.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "alt": "A serene minimalist room featuring natural wood accents and white walls"
+    },
+    "house_cleaner": {
+      "url": "https://images.pexels.com/photos/6195125/pexels-photo-6195125.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "alt": "Diverse cleaning team ready to sanitize a modern living room"
+    },
+    "electrician": {
+      "url": "https://images.pexels.com/photos/33694016/pexels-photo-33694016.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "alt": "Electrical technician repairing a circuit board"
+    },
+    "plumber": {
+      "url": "https://images.pexels.com/photos/33388390/pexels-photo-33388390.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "alt": "Technician in blue attire repairing equipment"
+    },
+    "avatar_customer": {
+      "url": "https://images.unsplash.com/photo-1536548665027-b96d34a005ae?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODl8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBicmF6aWxpYW4lMjBwZXJzb24lMjBzbWlsaW5nJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzg5NzY0ODA3fDA&ixlib=rb-4.1.0&q=85",
+      "alt": "Smiling customer portrait"
+    },
+    "avatar_provider": {
+      "url": "https://images.pexels.com/photos/29084945/pexels-photo-29084945.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "alt": "Friendly professional service worker portrait"
+    }
+  },
+  "instructions_to_main_agent": [
+    "Strictly follow the color palette with #0CAF60 as the predominant Brand color. Avoid all shades of blue or purple, use neutral grays/blacks for secondary text.",
+    "Logo Execution: Do NOT use a generic icon for the logo. Create a custom component composed of 4 small squares arranged in a 2x2 grid, with the top-right square rotated slightly (approx 15-45 degrees) to match the user's specific request. Color them using brandPrimary.",
+    "Implement the Uber-like Map-first architecture using a 100% viewport map in the background and `@gorhom/bottom-sheet` to house all the interactive content, forms, and categories.",
+    "For the Provider App, follow 'Glance-Safety' rules: incoming requests must display large, high-contrast typography and a massive single action button (Accept/Swipe). The state machine is strictly linear (Accepted -> En Route -> Started -> Completed).",
+    "Dynamic Forms: The service request for 'Diarista', 'Eletricista', and 'Encanador' needs different inputs. Build a modular layout inside the bottom sheet that adapts the fields (number of rooms vs photo upload for a pipe) before calculating the price.",
+    "Use 'Space Grotesk' for Headings and numeric data (pricing, ETAs, times) to give a highly technological yet modern feel. Use 'Geist' for standard UI text.",
+    "Apply gradient scrims (transparent to 80% surfaceInverse) on any text sitting directly on top of real images (like category cards if using images instead of icons).",
+    "Include surge pricing UI logic: when demand is high, use the 'warning' (#FACC15) color for surge tags alongside the price."
+  ]
+}
